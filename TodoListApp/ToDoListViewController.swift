@@ -57,6 +57,22 @@ class ToDoListViewController: UITableViewController {
         return cell
         
     }
+    // MARK - チェックマーク機能
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 選択されたセルに実行される処理
+        
+        let item = itemArray[indexPath.row]
+        
+        // チェックマーク
+        item.done = !item.done
+        
+        // リロードしてUIに反映
+        self.tableView.reloadData()
+        
+        // セルを選択した時の背景の変化を遅くする
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
