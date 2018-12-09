@@ -73,6 +73,35 @@ class ToDoListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        
+        //プラスボタンが押された時に実行される処理
+        
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "新しいアイテムを追加", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "リストに追加", style: .default) { (action)in
+            //リストに追加　を押された時に実行される処理
+            
+            let newItem: Item = Item(title: textField.text!)
+            
+            //アイテム追加処理
+            self.itemArray.append(newItem)
+            self.tableView.reloadData()
+            
+        }
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "新しいアイテム"
+            textField = alertTextField
+        }
+        
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
