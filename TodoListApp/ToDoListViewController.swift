@@ -74,6 +74,15 @@ class ToDoListViewController: UITableViewController {
         
     }
     
+    // MARK - スワイプでのアイテム削除機能
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        //アイテム削除処理
+        itemArray.remove(at: indexPath.row)
+        let indexPaths = [indexPath]
+        tableView.deleteRows(at: indexPaths, with: .automatic)
+    }
+    
     @IBAction func addButtonPressed(_ sender: Any) {
         
         //プラスボタンが押された時に実行される処理
